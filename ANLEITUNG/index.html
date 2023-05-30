@@ -1,0 +1,312 @@
+<!--
+ API Documentation HTML Template  - 1.0.1
+ Copyright © 2016 Florian Nicolas
+ Licensed under the MIT license.
+ https://github.com/ticlekiwi/API-Documentation-HTML-Template
+ !-->
+<!DOCTYPE html>
+<html class="no-js" lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <title>AbuseIPDB für Zen Cart 1.5.7 deutsch - Dokumentation</title>
+    <meta name="description" content="Anleitung zur Integration des AbuseIPDB Moduls in die deutsche Zen Cart Version">
+    <meta name="author" content="webchills">
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/hightlightjs-dark.css">
+    <link rel="stylesheet" href="css/style.css" media="all">
+    <script src="js/highlight.min.js"></script> 
+    <script src="js/jquery.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+$(document).ready(function(){
+    var btn = $('#backToTop');
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: 0
+        }, '300');
+    });
+});
+</script>
+</head>
+
+<body class="one-content-column-version">
+<!-- BackToTop Button -->
+<a href="javascript:void(0);" id="backToTop" class="back-to-top">
+    <i class="arrow"></i><i class="arrow"></i>
+</a>
+<div class="left-menu">
+    <div class="content-logo">
+        <div class="logo">
+            <a href="index.html"><img alt="Anleitung zur Integration des AbuseIPDB Moduls in die deutsche Zen Cart Version" title="Anleitung zur Integration des AbuseIPDB Moduls in die deutsche Zen Cart Version" src="images/logo.png" height="32" /></a>
+            <span>AbuseIPDB</span><span2>für Zen Cart 1.5.7 deutsch</span2>
+        </div>
+        <button class="burger-menu-icon" id="button-menu-mobile">
+            <svg width="34" height="34" viewBox="0 0 100 100"><path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path><path class="line line2" d="M 20,50 H 80"></path><path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path></svg>
+        </button>
+    </div>
+    <div class="mobile-menu-closer"></div>
+    <div class="content-menu">
+        <div class="content-infos">
+            <div class="info"><b>Version:</b> 2.0.7</div>
+            <div class="info"><b>Autor:</b> <a href="https://www.webchills.at" target="_blank">webchills</a></div>
+            <div class="info"><b>last Update:</b> 30. Mai 2023</div>
+        </div>
+        <ul>
+            <li class="scroll-to-link active" data-target="content-zweck">
+                <a>SINN UND ZWECK</a>
+            </li>
+            <li class="scroll-to-link active" data-target="content-copyright">
+                <a>COPYRIGHT</a>
+            </li>
+            <li class="scroll-to-link" data-target="content-vorbereitungen">
+                <a>VORBEREITUNGEN</a>
+            </li>
+            <li class="scroll-to-link" data-target="content-installation">
+                <a>INSTALLATION</a>
+            </li>
+            
+            <li class="scroll-to-link" data-target="content-verwendung">
+                <a>VERWENDUNG</a>
+            </li>
+            <li class="scroll-to-link" data-target="content-uninstall">
+                <a>DEINSTALLATION</a>
+            </li>
+            <li class="scroll-to-link" data-target="content-download">
+                <a>DOWNLOAD</a>
+            </li>
+            <li class="scroll-to-link" data-target="content-changelog">
+                <a>CHANGELOG</a>
+            </li>
+           
+        </ul>
+    </div>
+</div>
+
+
+<div class="content-page">
+
+    <div class="content">
+    <p class="headline"><br>Dokumentation zum AbuseIPDB Modul für die deutsche Zen Cart Version 1.5.7f</p>
+    <br>
+    <p><img src="images/abuseipdb.png" width="200px"/></p>
+    <span class="smallinfo">Alle Infos zu AbuseIPDB auf: <a href="https://www.abuseipdb.com/" target="_blank">www.abuseipdb.com</a><br>
+    Alle Infos zur deutschen Zen Cart Version auf: <a href="https://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at</a><br>
+    Weitere Module für die deutsche Zen Cart Version auf: <a href="https://downloads.zen-cart-pro.at" target="_blank">downloads.zen-cart-pro.at</a></span>
+        <div class="overflow-hidden content-section" id="content-zweck">
+        
+            <h1>Sinn und Zweck</h1>
+            <p><a href="https://www.abuseipdb.com/" target="_blank">AbuseIPDB</a> ist ein Projekt, das von <a href="https://www.marathon-studios.com/">Marathon Studios Inc.</a> in den USA verwaltet wird. Ziel ist es, das Internet sicherer zu machen, indem  ein zentrales Repository für Webmaster, Systemadministratoren und andere interessierte Parteien bereitgestellt wird, um IP-Adressen zu melden und zu identifizieren, die mit bösartigen Online-Aktivitäten in Verbindung gebracht wurden.</p>
+            <p>Jeder, der schon einmal eine Website oder einen Server betrieben hat, weiß, dass das gesamte Internet ständig gescannt wird und bösartigen Angriffen ausgesetzt ist, die massenhaft von Hackern, Spammern und anderen bösartigen Akteuren aus aller Welt durchgeführt werden. Diese Akteure verwenden automatisierte Software, um rund um die Uhr Millionen von Zielen zu scannen und anzugreifen - oft von IP-Adressen aus, die mit zwielichtigen Hosting-Unternehmen, Botnets, gehackten Servern oder anderen von Hackern kontrollierten Rechnern verbunden sind.
+<br>
+Während diese weitreichenden Angriffe Hackern dabei helfen, ihre Chancen zu erhöhen, ein verwundbares Ziel zu finden, das sie ausnutzen können, bieten sie auch Webmastern und Systemadministratoren die Möglichkeit, ihre Systemprotokolle mitzuteilen und proaktiv Angriffe zu erkennen und zu entschärfen, die von IP-Adressen ausgehen, von denen bekannt ist, dass sie mit bösartigen Aktivitäten verbunden sind.
+<br>
+AbuseIPDB bietet eine einfache Möglichkeit für Systemadministratoren, sowohl bösartige IP-Adressen zu melden als auch Zugang zu einer von einer breiten Masse erstellten Liste bösartiger IPs zu erhalten, bevor diese überhaupt die Chance hatten, Ihre Infrastruktur anzugreifen.</p>
+            <p>Dieses Modul integriert AbuseIPDB in die deutsche Zen Cart Version, um Ihren Onlineshop vor missbräuchlichen IP-Adressen zu schützen. Es prüft die Vertrauenswürdigkeit der IP-Adresse eines Besuchers mithilfe der AbuseIPDB-API und blockiert den Zugriff auf die Website, wenn der Wert einen vordefinierten Schwellenwert überschreitet. Das Modul unterstützt auch die Zwischenspeicherung, um die Anzahl der API-Aufrufe zu reduzieren, einen Testmodus für die Fehlersuche und die Protokollierung zur Überwachung blockierter IPs. Darüber hinaus ermöglicht es das manuelle Whitelisting und Blacklisting von IP-Adressen, um Ihnen eine bessere Kontrolle über den Zugriff auf Ihre Website zu ermöglichen.</p>
+
+<p><strong>Voraussetzungen:</strong></p>
+<ul>
+  <li>
+  Freigeschalteter AbuseIPDB Account</li>
+  <li>    Konfiguration des erforderlichen API Keys im AbuseIPDB Account (siehe <a href="#content-vorbereitungen">Vorbereitungen</a>)</li>
+  <li>    Zen Cart 1.5.7f deutsche Version</li>
+  
+  <li>    PHP mindestens 7.4.x, empfohlen 8.0.x
+  </li>
+</ul>
+<p><strong>Features:</strong></p>
+<ol><li>API-Schlüssel: Das Skript benötigt einen gültigen API-Schlüssel von AbuseIPDB, um den Missbrauchs-Confidence-Score einer IP-Adresse zu prüfen. Stellen Sie sicher, dass ein gültiger API-Schlüssel verfügbar und in der Einstellung "AbuseIPDB API Key" im Zen Cart-Administrationsbereich korrekt konfiguriert ist. </li>
+<li>Cache-Ablauf: Das Skript überprüft den Datenbank-Cache, um übermäßige API-Aufrufe zu vermeiden. Wenn der Cache für eine bestimmte IP-Adresse abgelaufen ist, führt das Skript einen neuen API-Aufruf durch.</li><li>Testmodus: Das Skript bietet einen Testmodus für die Fehlersuche. Wenn sich eine IP im Testmodus befindet, protokolliert das Skript die IP unabhängig von der Missbrauchsbewertung als gesperrt.</li>  
+<li>IP-Bereinigungsfunktion: Das Modul verfügt über eine IP-Cleanup-Funktion, die abgelaufene IP-Datensätze automatisch löscht. Der Bereinigungsprozess wird einmal pro Tag durch die erste protokollierte IP ausgelöst. Diese Funktion kann aktiviert oder deaktiviert werden, und die Verfallszeit der IP-Datensätze kann in den Einstellungen "Intervall für Löschung" konfiguriert werden. </li> 
+<li>Manuelles Whitelisting und Blacklisting: Das Skript prüft, ob eine IP manuell auf eine Whitelist oder Blacklist gesetzt wurde, bevor es etwas anderes tut. Manuell auf die Whitelist gesetzte IPs umgehen die AbuseIPDB-Prüfung, und manuell auf die Blacklist gesetzte IPs werden sofort gesperrt. Geben Sie die IP-Adressen durch Kommas getrennt und ohne Leerzeichen ein, etwa so: 192.168.1.1,192.168.2.2,192.168.3.3 </li> 
+<li>Protokollierung: Wenn die Protokollierung aktiviert ist, werden Protokolldateien erstellt, wenn eine IP-Adresse gesperrt wird, entweder manuell oder auf der Grundlage des AbuseIPDB-Scores. Wenn die API-Protokollierung aktiviert ist, wird auch für API-Aufrufe eine separate Protokolldatei erstellt. Der Speicherort dieser Protokolldateien kann über die Einstellung "Logfile Pfad" im Zen Cart-Administrationsbereich konfiguriert werden.</li> 
+<li>Überspringen der IP-Prüfung für bekannte Spider: Wenn die Einstellung "Spider erlauben" aktiviert ist, werden bekannte Spider bei der IP-Prüfung und Protokollierung übersprungen, da sie nicht der AbuseIPDB-Bewertung unterliegen. Dies kann nützlich sein, um unnötige API-Aufrufe und Protokolleinträge für Spider-Sitzungen zu vermeiden. </li>
+<li>Spider-Erkennung: Das Skript verwendet eine von Zen Cart bereitgestellte Datei namens spiders.txt, um bekannte Spider, einschließlich Suchmaschinen-Bots und Web-Crawler, zu identifizieren. Es liest den User Agent aus der HTTP-Anfrage und vergleicht ihn mit den Einträgen in der Datei spiders.txt. Wenn eine Übereinstimmung gefunden wird, die anzeigt, dass der Benutzer-Agent einem bekannten Spider entspricht, wird das Spider-Flag auf true gesetzt. Dieses Flag bestimmt das Verhalten des Skripts und ermöglicht es ihm, bestimmte Prüfungen zu umgehen oder bestimmte, auf Spider-Sitzungen zugeschnittene Aktionen auszuführen. </li></ol>
+
+
+        </div>
+        <div class="overflow-hidden content-section" id="content-copyright">
+            <h1>Copyright, Lizenz</h1>
+            <p>
+<strong>Copyright</strong> <br>
+(c) 2023 marcopolo (CcMarc)<br>
+(<a href="https://github.com/CcMarc/AbuseIPDB" target="_blank">https://github.com/CcMarc/AbuseIPDB</a>)<br><br>
+Übersetzung und Anpassung für die deutsche Zen Cart Version:<br>
+(c) 2023 webchills (<a href="https://www.webchills.at" target="_blank">www.webchills.at</a>)<br><br>
+
+    <strong>Änderungen gegenüber dem Originalmodul:</strong>
+    <br>
+   - Deutsche Sprachfiles, deutsche Konfiguration und deutsche Anleitung hinzugefügt<br>
+   - Installer auf Standard Modul Installer der deutschen Zen Cart Version umgestellt<br>
+   - Weiterleitung geblockter IPs auf 403 Forbidden statt auf index.php?main_page=page_not_found<br>
+   - unnötige Dateien entfernt
+ <br>
+  <br>
+  <strong>Lizenz:</strong><br>
+  This contribution is subject to version 3.0 of the GPL license available through the world-wide-web at the following url:<br>
+  <a href="http://www.zen-cart-pro.at/license/3_0.txt">http://www.zen-cart-pro.at/license/3_0.txt</a>
+ 
+    
+  </p>
+        </div>
+        <div class="overflow-hidden content-section" id="content-vorbereitungen">
+            <h2>Vorbereitungen bei AbuseIPDB</h2>
+            <p>Bevor Sie dieses Modul installieren können, nehmen Sie zunächst wichtige Einstellungen in Ihrem AbuseIPDB Account vor.<br>
+            Loggen Sie sich also zunächst in Ihren Account ein auf:<br>
+  <a href="https://www.abuseipdb.com/login" target="_blank">https://www.abuseipdb.com/login</a><br>
+  Stellen Sie sicher, dass Ihre Email und Ihre Domain verifiziert sind.
+  
+</p>
+<p>Gehen Sie nun unter API auf Create Key und erstellen Sie einen API Key für Ihren Shop.
+Nun können Sie das Modul in Ihrem Shop wie unter Installation beschrieben installieren.</p>
+<p>Um Ihr API-Limit in einem kostenlosen AbuseIPDB Account auf bis zu 5000 Anfragen pro Tag zu erhöhen, binden Sie das AbuseIPDB Badge auf einer Unterseite Ihres Shops ein, z.B. im Impressum.<br>Infos dazu auf:<br>
+  <a href="https://www.abuseipdb.com/account/contributor" target="_blank">https://www.abuseipdb.com/account/contributor</a></p>
+            
+        </div>
+        <div class="overflow-hidden content-section" id="content-installation">
+            <h2>Installation</h2>
+           <p><b>Voraussetzungen</b></p>
+  
+  <p>Dieses Modul ist<strong> nur für Zen Cart 1.5.7f deutsch geeignet</strong>.</p>
+  
+  
+    
+    <p><strong>Empfehlung:</strong>
+  <br>
+  Dieses Modul erst in einem Testsystem einbauen und dort konfigurieren/testen und endgültig an die eigenen Wünsche anpassen. Erst dann in einem Liveshop einsetzen! Sichern Sie unbedingt alle   Dateien Ihres Shops per FTP und sichern Sie die Datenbank mit phpMyAdmin oder anderen geeigneten Tools!</p>
+<p class="warning"><b>WICHTIG</b><br>
+Vor dem Einbau dieser Änderungen:<br>
+BACKUP von Shop und Datenbank machen! <br>
+Keine Haftung, Verwendung auf eigene Gefahr!<br>
+BACKUP gemacht? Ok, dann weiterlesen...
+</p>
+<p>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
+<p><br>
+  1) <br>
+Im Ordner NEUE DATEIEN den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen.<br>
+<br>
+2)<br>
+In die Zen Cart Administration einloggen.<br>
+Schalten Sie den Shop unter Konfiguration &gt; Shopwartung in den Wartungsmodus.
+<br>
+<br>
+3)<br>
+Überprüfen Sie nun erst nochmal ob Sie wirklich in Schritt 1 die Ordner in NEUE DATEIEN entsprechend umbenannt haben.<br>
+Ja?<br>
+Dann nun alle Dateien/Ordner aus dem Ordner NEUE DATEIEN in der vorgegebenen Struktur in die Zen Cart Installation hochladen. <br>
+  Dabei werden keine bestehende Dateien überschrieben.<br>
+  <br>
+  4)<br>
+  In der Zen Cart Administration auf irgendeinen Menüpunkt clicken. Sie sollten oben grüne Erfolgsmeldungen sehen und unter Konfiguration ist nun der neue Menüpunkt &quot;AbuseIPDB Einstellungen&quot; vorhanden.  
+  <br>
+  <br>
+4)<br>
+Nehmen Sie nun unter Konfiguration &gt; AbuseIPDB Einstellungen die für Sie passenden Einstellungen vor. Alle Einstellungsmöglichkeiten sind dort erklärt.</p>
+        </div>
+
+        
+<div class="overflow-hidden content-section" id="content-verwendung">
+            <h1>Verwendung</h1>
+            <p><strong>Script-Logik</strong></p>
+<p>Das Modul arbeitet folgendermaßen:</p> 
+<ol><li>IP-Whitelisting: Das Skript prüft zunächst, ob die IP auf der Whitelist steht. Ist dies der Fall, wird die IP ohne weitere Bearbeitung zugelassen. </li> 
+<li>Manuelle IP-Sperrung: Wenn die IP-Adresse nicht auf der Whitelist steht, prüft das Skript, ob die IP-Adresse manuell gesperrt ist. Ist dies der Fall, wird die IP-Adresse im Cache als gesperrt protokolliert und eine entsprechende Protokolldatei erstellt.</li>  
+<li>IP Cache Lookup: Wenn die IP weder auf der Whitelist steht noch manuell blockiert wurde, sucht das Skript nach der IP im Datenbank-Cache. <br>
+a. Wenn die IP im Cache gefunden wird und der Cache noch nicht abgelaufen ist: Der Missbrauchswert wird aus dem Cache abgerufen. Liegt der Missbrauchswert über dem Schwellenwert oder befindet sich die IP im Testmodus, wird die IP im Cache als blockiert protokolliert und eine Protokolldatei erstellt.  <br>
+b. Wenn die IP nicht im Cache gefunden wird oder der Cache abgelaufen ist: Es erfolgt ein API-Aufruf an AbuseIPDB, um den Missbrauchswert für die IP abzurufen. Der Datenbank-Cache wird dann mit der neuen Missbrauchsbewertung und dem Zeitstempel aktualisiert. <br>
+c. IP-Prüfung für bekannte Spider überspringen: Wenn die IP als bekannter Spider identifiziert wird und die Einstellung Spider eraluben aktiviert ist, werden die IP-Prüfung und die Protokollierungsschritte für Spider übersprungen.  <br>
+d. Spider-Protokollierung: Wenn die Spider-Protokollierung aktiviert ist, wird für Spider, die eine IP-Prüfung umgangen haben, eine separate Protokolldatei erstellt.</li>  
+<li>Bereinigung der Datenbank: Die Skriptfunktion entfernt bei Auslösung regelmäßig alte IP-Datensätze aus der Datenbank, wenn die Bereinigungsfunktion aktiviert ist. Dieser Vorgang wird nur einmal pro Tag durchgeführt, was durch die Aktualisierung des Wartungszeitstempels angezeigt wird.</li>  
+<li>API-Protokollierung: Wenn die API-Protokollierung aktiviert ist, wird eine separate Protokolldatei für API-Aufrufe erstellt.</li> 
+<li>IP-Blockierung: Wenn der Missbrauchswert über dem Schwellenwert liegt oder sich die IP im Testmodus befindet, wird die IP-Adresse als blockiert protokolliert (entweder vom API-Aufruf oder vom Cache) und eine entsprechende Protokolldatei erstellt.</li>  
+<li>Sichere IP: Wenn keine der oben genannten Bedingungen eine Sperrung auslöst, gilt die IP als sicher, und das Skript wird ohne weitere Maßnahmen fortgesetzt.</li>
+<li>Blockierte IPs werden auf eine Standard 403 Forbidden Seite geleitet</li></ol> 
+        </div>
+ <div class="overflow-hidden content-section" id="content-uninstall">
+            <h1>Modul deinstallieren</h1>
+           
+<p>Um das Modul komplett zu deinstallieren gehen Sie folgendermaßen vor:</p>
+<ul>
+<li>1. Alle von diesem Modul neu angelegten Dateien vom Server löschen</li>
+<li>2. Im Ordner UNINSTALL die unsinstall.sql mit einem Texteditor öffnen und den Inhalt kopieren</li>
+<li>3. In der zen Cart Administration den Inhalt ins Eingabefeld unter Tools > SQL Patches installieren einfügen und absenden</li>
+</ul>
+
+
+        </div>     
+<div class="overflow-hidden content-section" id="content-download">
+            <h1>Download</h1>
+<p>Dieses Modul steht kostenlos auf Github zum Download bereit.</p>
+<p>Aktuelle Version: 2.0.7 vom 30.05.2023:</p>
+<p><a class="downloadbutton" title="Download AbuseIPDB 2.0.7 für Zen Cart 1.5.7 deutsch" href="https://github.com/zencartpro/157-modul-abuseipdb/archive/refs/tags/v2.0.7.zip">Download (.zip)</a></p>
+<p>Der Downloadbutton liefert immer direkt von Github das .zip Archiv der neuesten Version.<br>
+Ältere Versionen sind auf Github unter Releases archiviert:<br>
+  <a href="https://github.com/zencartpro/157-modul-abuseipdb/releases" target="_blank">https://github.com/zencartpro/157-modul-abuseipdb/releases</a><br><br>
+  Wenn Sie von der Github Website downloaden, dann laden Sie bitte ausschließlich Releases herunter (zip unter Assets). In den Repositories findet Entwicklung statt, wenn Sie ein Repository (über den grünen Code Button) herunterladen, dann kann das Fehler enthalten bzw. noch eine reine Entwicklungsversion sein. Daher freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlich unter Releases herunterladen oder über den Downloadbutton oben. Um unter Windows Einschränkungen bei langen Dateinamen zu vermeiden, entpacken Sie das .zip  mit einem echten unzip Programm wie z.B. <a href="https://www.7-zip.de/" target="_blank">7-zip</a> oder <a href="https://www.winrar.de/" target="_blank">WinRAR</a></p>
+        </div>
+        <div class="overflow-hidden content-section" id="content-changelog">
+            <h1>Changelog</h1>
+           
+  <br>
+<p>Version 2.0.7 - 2023-05-30</p>
+<ul>
+<li>Initial Release</li>
+</ul>
+
+
+        </div>
+        
+    </div>
+    <div class="footer"><p>Copyright © 2004 - 2023 <a href="https://www.zen-cart-pro.at" target="_blank">www.zen-cart-pro.at - Die deutsche Zen Cart Version</a><br>
+the art of e-commerce - übersetzt, angepasst und erweitert zur Verwendung im deutschsprachigen Raum</p></div>
+</div>
+
+
+<!-- Github Corner Ribbon - to remove (Ribbon created with : http://tholman.com/github-corners/ )-->
+<a target="_blank" href="https://github.com/zencartpro/157-modul-abuseipdb" class="github-corner" aria-label="View source on Github" title="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="z-index:99999; fill:#E66B1B; color:#fff; position: fixed; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+<style>
+    .github-corner:hover .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+
+    @keyframes octocat-wave {
+        0%,
+        100% {
+            transform: rotate(0)
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg)
+        }
+        40%,
+        80% {
+            transform: rotate(10deg)
+        }
+    }
+
+    @media (max-width:500px) {
+        .github-corner:hover .octo-arm {
+            animation: none
+        }
+        .github-corner .octo-arm {
+            animation: octocat-wave 560ms ease-in-out
+        }
+    }
+    @media only screen and (max-width:680px){ .github-corner > svg { right: auto!important; left: 0!important; transform: rotate(270deg)!important;}}
+</style>
+<!-- END Github Corner Ribbon - to remove -->
+<script src="js/script.js"></script>
+</body>
+</html>
