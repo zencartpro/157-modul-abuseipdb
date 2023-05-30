@@ -5,7 +5,7 @@
  * Copyright 2023 marcopolo
  * see https://github.com/CcMarc/AbuseIPDB
  * License: GNU General Public License (GPL)
- * version $Id: class.abuseipdb_observer.php 2023-05-30 10:34:16Z webchills $
+ * version $Id: class.abuseipdb_observer.php 2023-05-30 21:31:16Z webchills $
  */
 
 class abuseipdb_observer extends base {
@@ -109,9 +109,8 @@ class abuseipdb_observer extends base {
                 if ($enable_logging) {
                     file_put_contents($log_file_path, $log_message_cache, FILE_APPEND);
                 }
-
-                header('Location: /index.php?main_page=page_not_found');
-                exit();
+                header('HTTP/1.0 403 Forbidden');                
+                zen_exit();
             }
 
 			// Skip API call for known spiders if enabled
@@ -150,8 +149,8 @@ class abuseipdb_observer extends base {
                         file_put_contents($log_file_path, $log_message_cache, FILE_APPEND);
                     }
 
-                    header('Location: /index.php?main_page=page_not_found');
-                    exit();
+         header('HTTP/1.0 403 Forbidden');
+        zen_exit();
                 }
             } else {
                 // Make the API call
@@ -187,8 +186,8 @@ class abuseipdb_observer extends base {
                         file_put_contents($log_file_path, $log_message, FILE_APPEND);
                     }
 
-                    header('Location: /index.php?main_page=page_not_found');
-                    exit();
+            header('HTTP/1.0 403 Forbidden');
+            zen_exit();
                 }
             }
         }
