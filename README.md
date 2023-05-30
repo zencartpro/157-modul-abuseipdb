@@ -7,6 +7,8 @@ Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlic
 
 ## Sinn und Zweck:
 * AbuseIPDB ist ein Projekt, das von Marathon Studios Inc. in den USA verwaltet wird. Ziel ist es, das Internet sicherer zu machen, indem ein zentrales Repository für Webmaster, Systemadministratoren und andere interessierte Parteien bereitgestellt wird, um IP-Adressen zu melden und zu identifizieren, die mit bösartigen Online-Aktivitäten in Verbindung gebracht wurden.
+* Infos zu diesem Projekt auf:
+* https://www.abuseipdb.com
 * Dieses Modul integriert AbuseIPDB in die deutsche Zen Cart Version, um Ihren Onlineshop vor missbräuchlichen IP-Adressen zu schützen. 
 * Es prüft die Vertrauenswürdigkeit der IP-Adresse eines Besuchers mithilfe der AbuseIPDB-API und blockiert den Zugriff auf die Website, wenn der Wert einen vordefinierten Schwellenwert überschreitet. Das Modul unterstützt auch die Zwischenspeicherung, um die Anzahl der API-Aufrufe zu reduzieren, einen Testmodus für die Fehlersuche und die Protokollierung zur Überwachung blockierter IPs. Darüber hinaus ermöglicht es das manuelle Whitelisting und Blacklisting von IP-Adressen, um Ihnen eine bessere Kontrolle über den Zugriff auf Ihre Website zu ermöglichen.
 
