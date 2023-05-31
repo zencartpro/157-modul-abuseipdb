@@ -60,9 +60,9 @@ $(document).ready(function(){
     <div class="mobile-menu-closer"></div>
     <div class="content-menu">
         <div class="content-infos">
-            <div class="info"><b>Version:</b> 2.0.7</div>
+            <div class="info"><b>Version:</b> 2.0.8</div>
             <div class="info"><b>Autor:</b> <a href="https://www.webchills.at" target="_blank">webchills</a></div>
-            <div class="info"><b>last Update:</b> 30. Mai 2023</div>
+            <div class="info"><b>last Update:</b> 31. Mai 2023</div>
         </div>
         <ul>
             <li class="scroll-to-link active" data-target="content-zweck">
@@ -131,6 +131,7 @@ AbuseIPDB bietet eine einfache Möglichkeit für Systemadministratoren, sowohl b
 <li>Cache-Ablauf: Das Skript überprüft den Datenbank-Cache, um übermäßige API-Aufrufe zu vermeiden. Wenn der Cache für eine bestimmte IP-Adresse abgelaufen ist, führt das Skript einen neuen API-Aufruf durch.</li><li>Testmodus: Das Skript bietet einen Testmodus für die Fehlersuche. Wenn sich eine IP im Testmodus befindet, protokolliert das Skript die IP unabhängig von der Missbrauchsbewertung als gesperrt.</li>  
 <li>IP-Bereinigungsfunktion: Das Modul verfügt über eine IP-Cleanup-Funktion, die abgelaufene IP-Datensätze automatisch löscht. Der Bereinigungsprozess wird einmal pro Tag durch die erste protokollierte IP ausgelöst. Diese Funktion kann aktiviert oder deaktiviert werden, und die Verfallszeit der IP-Datensätze kann in den Einstellungen "Intervall für Löschung" konfiguriert werden. </li> 
 <li>Manuelles Whitelisting und Blacklisting: Das Skript prüft, ob eine IP manuell auf eine Whitelist oder Blacklist gesetzt wurde, bevor es etwas anderes tut. Manuell auf die Whitelist gesetzte IPs umgehen die AbuseIPDB-Prüfung, und manuell auf die Blacklist gesetzte IPs werden sofort gesperrt. Geben Sie die IP-Adressen durch Kommas getrennt und ohne Leerzeichen ein, etwa so: 192.168.1.1,192.168.2.2,192.168.3.3 </li> 
+<li>Zusätzliche IP-Blacklist-Datei Option: Das Modul bietet eine erweiterte IP-Blacklist-Funktion. Administratoren können diese Funktion über die Einstellung "Textdatei für IP Blacklist aktivieren?" in den Moduleinstellungen aktivieren oder deaktivieren. Sobald diese Funktion aktiviert ist, prüft das Modul eine bestimmte Blacklist-Datei für jede eingehende IP-Adresse. Die Blacklist-Datei sollte eine vollständige oder teilweise IP-Adresse pro Zeile auflisten. Bei einer Übereinstimmung wird die entsprechende IP-Adresse sofort blockiert, wobei alle anderen Prüfungen oder Bewertungsmethoden umgangen werden. Mit dieser Funktion haben Administratoren eine bessere Kontrolle über die Sperrung bestimmter IP-Adressen, indem sie vollständige oder teilweise Übereinstimmungen aus der Blacklist-Datei verwenden. </li>
 <li>Protokollierung: Wenn die Protokollierung aktiviert ist, werden Protokolldateien erstellt, wenn eine IP-Adresse gesperrt wird, entweder manuell oder auf der Grundlage des AbuseIPDB-Scores. Wenn die API-Protokollierung aktiviert ist, wird auch für API-Aufrufe eine separate Protokolldatei erstellt. Der Speicherort dieser Protokolldateien kann über die Einstellung "Logfile Pfad" im Zen Cart-Administrationsbereich konfiguriert werden.</li> 
 <li>Überspringen der IP-Prüfung für bekannte Spider: Wenn die Einstellung "Spider erlauben" aktiviert ist, werden bekannte Spider bei der IP-Prüfung und Protokollierung übersprungen, da sie nicht der AbuseIPDB-Bewertung unterliegen. Dies kann nützlich sein, um unnötige API-Aufrufe und Protokolleinträge für Spider-Sitzungen zu vermeiden. </li>
 <li>Spider-Erkennung: Das Skript verwendet eine von Zen Cart bereitgestellte Datei namens spiders.txt, um bekannte Spider, einschließlich Suchmaschinen-Bots und Web-Crawler, zu identifizieren. Es liest den User Agent aus der HTTP-Anfrage und vergleicht ihn mit den Einträgen in der Datei spiders.txt. Wenn eine Übereinstimmung gefunden wird, die anzeigt, dass der Benutzer-Agent einem bekannten Spider entspricht, wird das Spider-Flag auf true gesetzt. Dieses Flag bestimmt das Verhalten des Skripts und ermöglicht es ihm, bestimmte Prüfungen zu umgehen oder bestimmte, auf Spider-Sitzungen zugeschnittene Aktionen auszuführen. </li></ol>
@@ -198,12 +199,11 @@ BACKUP gemacht? Ok, dann weiterlesen...
 Im Ordner NEUE DATEIEN den Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses umbenennen.<br>
 <br>
 2)<br>
-In die Zen Cart Administration einloggen.<br>
-Schalten Sie den Shop unter Konfiguration &gt; Shopwartung in den Wartungsmodus.
+In die Zen Cart Administration einloggen.
 <br>
 <br>
 3)<br>
-Überprüfen Sie nun erst nochmal ob Sie wirklich in Schritt 1 die Ordner in NEUE DATEIEN entsprechend umbenannt haben.<br>
+Überprüfen Sie nun erst nochmal ob Sie wirklich in Schritt 1 den Ordner in NEUE DATEIEN entsprechend umbenannt haben.<br>
 Ja?<br>
 Dann nun alle Dateien/Ordner aus dem Ordner NEUE DATEIEN in der vorgegebenen Struktur in die Zen Cart Installation hochladen. <br>
   Dabei werden keine bestehende Dateien überschrieben.<br>
@@ -212,7 +212,7 @@ Dann nun alle Dateien/Ordner aus dem Ordner NEUE DATEIEN in der vorgegebenen Str
   In der Zen Cart Administration auf irgendeinen Menüpunkt clicken. Sie sollten oben grüne Erfolgsmeldungen sehen und unter Konfiguration ist nun der neue Menüpunkt &quot;AbuseIPDB Einstellungen&quot; vorhanden.  
   <br>
   <br>
-4)<br>
+5)<br>
 Nehmen Sie nun unter Konfiguration &gt; AbuseIPDB Einstellungen die für Sie passenden Einstellungen vor. Alle Einstellungsmöglichkeiten sind dort erklärt.</p>
         </div>
 
@@ -249,8 +249,8 @@ d. Spider-Protokollierung: Wenn die Spider-Protokollierung aktiviert ist, wird f
 <div class="overflow-hidden content-section" id="content-download">
             <h1>Download</h1>
 <p>Dieses Modul steht kostenlos auf Github zum Download bereit.</p>
-<p>Aktuelle Version: 2.0.7 vom 30.05.2023:</p>
-<p><a class="downloadbutton" title="Download AbuseIPDB 2.0.7 für Zen Cart 1.5.7 deutsch" href="https://github.com/zencartpro/157-modul-abuseipdb/archive/refs/tags/v2.0.7.zip">Download (.zip)</a></p>
+<p>Aktuelle Version: 2.0.8 vom 31.05.2023:</p>
+<p><a class="downloadbutton" title="Download AbuseIPDB 2.0.8 für Zen Cart 1.5.7 deutsch" href="https://github.com/zencartpro/157-modul-abuseipdb/archive/refs/tags/v2.0.8.zip">Download (.zip)</a></p>
 <p>Der Downloadbutton liefert immer direkt von Github das .zip Archiv der neuesten Version.<br>
 Ältere Versionen sind auf Github unter Releases archiviert:<br>
   <a href="https://github.com/zencartpro/157-modul-abuseipdb/releases" target="_blank">https://github.com/zencartpro/157-modul-abuseipdb/releases</a><br><br>
@@ -260,6 +260,12 @@ d. Spider-Protokollierung: Wenn die Spider-Protokollierung aktiviert ist, wird f
             <h1>Changelog</h1>
            
   <br>
+  <p>Version 2.0.8 - 2023-05-31</p>
+<ul>
+<li>Neue zusätzliche IP-Blacklist-Datei Option</li>
+<li>Fehler im Uninstaller behoben</li>
+<li>Anleitung aktualisiert</li>
+</ul>
 <p>Version 2.0.7 - 2023-05-30</p>
 <ul>
 <li>Initial Release</li>
