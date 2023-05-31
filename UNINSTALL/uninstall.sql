@@ -1,13 +1,10 @@
--- Remove the configuration settings for the AbuseIPDB module
+#######################################################################################################
+# AbuseIPDB UNINSTALL - 2023-05-31 - webchills
+# NUR AUSFÜHREN FALLS SIE DAS MODUL VOLLSTÄNDIG ENTFERNEN WOLLEN!!!
+########################################################################################################
+DELETE FROM configuration_group WHERE configuration_group_title = 'AbuseIPDB';
 DELETE FROM configuration WHERE configuration_key LIKE 'ABUSEIPDB_%';
--- Remove the German configuration translations for the AbuseIPDB module
 DELETE FROM configuration_language WHERE configuration_key LIKE 'ABUSEIPDB_%';
--- Remove the configuration group for the AbuseIPDB module
-DELETE FROM configuration_group WHERE configuration_group_title = 'AbuseIPDB Konfiguration';
-DELETE FROM configuration_group WHERE configuration_group_title = 'AbuseIPDB Configuration';
--- Remove the admin page for the AbuseIPDB module
 DELETE FROM admin_pages WHERE page_key = 'configAbuseIPDB';
--- Drop the abuseipdb_cache table
 DROP TABLE IF EXISTS abuseipdb_cache;
--- Drop the abuseipdb_maintenance table
 DROP TABLE IF EXISTS abuseipdb_maintenance;
