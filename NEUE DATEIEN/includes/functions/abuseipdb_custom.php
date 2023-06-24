@@ -5,55 +5,54 @@
  * @Copyright 2023 marcopolo
  * see https://github.com/CcMarc/AbuseIPDB
  * @license GNU General Public License (GPL)
- * @version $Id: abuseipdb_custom.php 2023-05-30 08:34:16Z webchills $
+ * @version $Id: abuseipdb_custom.php 2023-06-24 20:34:16Z webchills $
  */
 
+// Function to get Abuse Confidence Score from AbuseIPDB
 function getAbuseConfidenceScore($ip, $api_key) {
+    // Define the API URL
     $api_url = "https://api.abuseipdb.com/api/v2/check";
 
+    // Initialize a new cURL session
     $curl = curl_init();
+
+    // Set the cURL options
     curl_setopt_array($curl, [
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL => $api_url . "?ipAddress=" . $ip . "&maxAgeInDays=30",
-        CURLOPT_HTTPHEADER => [
+        CURLOPT_RETURNTRANSFER => 1, // Return the transfer as a string
+        CURLOPT_URL => $api_url . "?ipAddress=" . $ip . "&maxAgeInDays=30", // The URL to fetch
+        CURLOPT_HTTPHEADER => [ // Set HTTP headers
             "Key: " . $api_key,
             "Accept: application/json",
         ],
     ]);
 
+    // Execute the cURL session
     $response = curl_exec($curl);
+
+    // Get the HTTP status code
     $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    // Close the cURL session
     curl_close($curl);
 
+    // Check the HTTP status code
     if ($http_code == 200) {
+        // Decode the JSON response
         $data = json_decode($response, true);
+
+        // Check if the abuse confidence score exists
         if (isset($data['data']['abuseConfidenceScore'])) {
+            // Return the abuse confidence score
             return $data['data']['abuseConfidenceScore'];
         }
     }
 
-    return -1; // Return -1 if there was an issue retrieving the abuse confidence score
+    // Return -1 if there was an issue retrieving the abuse confidence score
+    return -1;
 }
 
-function checkSpiderFlag() {
-    if (defined('SESSION_BLOCK_SPIDERS')) {
-        $user_agent_abuseipdb = '';
-        if (isset($_SERVER['HTTP_USER_AGENT'])) {
-            $user_agent_abuseipdb = strtolower($_SERVER['HTTP_USER_AGENT']);
-        }
-        $spider_flag_abuseipdb = false;
-        if (!empty($user_agent_abuseipdb)) {
-            $spiders_abuseipdb = file(DIR_WS_INCLUDES . 'spiders.txt');
-            for ($i = 0, $n = sizeof($spiders_abuseipdb); $i < $n; $i++) {
-                if (!empty($spiders_abuseipdb[$i]) && substr($spiders_abuseipdb[$i], 0, 4) != '$Id:') {
-                    if (is_integer(strpos($user_agent_abuseipdb, trim($spiders_abuseipdb[$i])))) {
-                        $spider_flag_abuseipdb = true;
-                        break;
-                    }
-                }
-            }
-        }
-        return $spider_flag_abuseipdb;
-    }
-    return false;
+// Function to format the log file name
+function formatLogFileName($fileNameFormat) {
+    // Replace the placeholders with the current date elements
+    return str_replace(array('%Y', '%m', '%d'), array(date('Y'), date('m'), date('d')), $fileNameFormat);
 }

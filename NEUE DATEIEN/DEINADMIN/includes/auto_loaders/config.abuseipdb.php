@@ -5,14 +5,14 @@
  * Copyright 2023 marcopolo
  * see https://github.com/CcMarc/AbuseIPDB
  * license GNU General Public License (GPL)
- * version $Id: config.abuseipdb.php 2023-05-30 08:34:16Z webchills $
+ * version $Id: config.abuseipdb.php 2023-06-24 20:10:16Z webchills $
  */
  
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 } 
 
-$autoLoadConfig[999][] = array(
+$autoLoadConfig[200][] = array(
   'autoType' => 'init_script',
   'loadFile' => 'init_abuseipdb.php'
 );

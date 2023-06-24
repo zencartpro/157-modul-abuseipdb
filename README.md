@@ -37,7 +37,6 @@ Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlic
 ## Änderungen gegenüber dem Originalmodul:
 * Deutsche Sprachfiles, deutsche Konfiguration und deutsche Anleitung hinzugefügt
 * Installer auf Standard Modul Installer der deutschen Zen Cart Version umgestellt
-* Weiterleitung geblockter IPs auf 403 Forbidden statt auf index.php?main_page=page_not_found
 * unnötige Dateien entfernt 
 
 ## Installation und Konfiguration

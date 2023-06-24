@@ -5,7 +5,7 @@
  * Copyright 2023 marcopolo
  * see https://github.com/CcMarc/AbuseIPDB
  * License: GNU General Public License (GPL)
- * version $Id: class.abuseipdb_observer.php 2023-05-31 22:12:16Z webchills $
+ * version $Id: class.abuseipdb_observer.php 2023-06-24 20:06:16Z webchills $
  */
 
 class abuseipdb_observer extends base {
@@ -50,16 +50,9 @@ class abuseipdb_observer extends base {
 }
 
     protected function checkAbusiveIP() {
-        global $current_page_base, $_SESSION, $db;
-		
-		// Do not execute the check for the 'page_not_found' page or for known spiders
-		if ($current_page_base == 'page_not_found' || (isset($spider_flag) && $spider_flag === true && ABUSEIPDB_SPIDER_ALLOW == 'true')) {
-			return;
-		}
+        global $current_page_base, $_SESSION, $db, $spider_flag;
 
-        $abuseipdb_enabled = (int)ABUSEIPDB_ENABLED;
-
-        if (defined('ABUSEIPDB_ENABLED') && ABUSEIPDB_ENABLED == 'true') {
+        if (ABUSEIPDB_ENABLED == 'true') {
             require_once 'includes/functions/abuseipdb_custom.php';
 
             $api_key = ABUSEIPDB_API_KEY;
@@ -69,14 +62,19 @@ class abuseipdb_observer extends base {
             $test_ips = array_map('trim', explode(',', ABUSEIPDB_TEST_IP));
             $enable_logging = ABUSEIPDB_ENABLE_LOGGING === 'true';
             $enable_api_logging = ABUSEIPDB_ENABLE_LOGGING_API === 'true';
+	    $log_file_name = formatLogFileName(ABUSEIPDB_LOG_FILE_FORMAT);
+	    $log_file_name_cache = formatLogFileName(ABUSEIPDB_LOG_FILE_FORMAT_CACHE);
+	    $log_file_name_api = formatLogFileName(ABUSEIPDB_LOG_FILE_FORMAT_API);
+	    $log_file_name_spiders = formatLogFileName(ABUSEIPDB_LOG_FILE_FORMAT_SPIDERS);
             $log_file_path = ABUSEIPDB_LOG_FILE_PATH;
             $whitelisted_ips = explode(',', ABUSEIPDB_WHITELISTED_IPS);
             $blocked_ips = explode(',', ABUSEIPDB_BLOCKED_IPS);
             $debug_mode = ABUSEIPDB_DEBUG === 'true';
-			$spider_allow = ABUSEIPDB_SPIDER_ALLOW;
-			$spider_log_enabled = ABUSEIPDB_SPIDER_ALLOW_LOG;
-			$blacklist_enable = ABUSEIPDB_BLACKLIST_ENABLE === 'true';
-			$blacklist_file_path = ABUSEIPDB_BLACKLIST_FILE_PATH;
+	    $spider_allow = ABUSEIPDB_SPIDER_ALLOW;
+	    $spider_log_enabled = ABUSEIPDB_SPIDER_ALLOW_LOG;
+	    $blacklist_enable = ABUSEIPDB_BLACKLIST_ENABLE === 'true';
+	    $blacklist_file_path = ABUSEIPDB_BLACKLIST_FILE_PATH;
+	    $redirect_option = ABUSEIPDB_REDIRECT_OPTION;
 
             if ($debug_mode == true) {
                 error_log('API Key: ' . $api_key);
@@ -86,10 +84,28 @@ class abuseipdb_observer extends base {
                 error_log('Test IPs: ' . implode(',', $test_ips));
                 error_log('Enable Logging: ' . ($enable_logging ? 'true' : 'false'));
                 error_log('Enable API Logging: ' . ($enable_api_logging ? 'true' : 'false'));
+		error_log('Log File Format Block: ' . $log_file_name);
+		error_log('Log File Format Cache: ' . $log_file_name_cache);
+		error_log('Log File Format Api: ' . $log_file_name_api);
+		error_log('Log File Format Spiders: ' . $log_file_name_spiders);
                 error_log('Log File Path: ' . $log_file_path);
                 error_log('Whitelisted IPs: ' . implode(',', $whitelisted_ips));
                 error_log('Blocked IPs: ' . implode(',', $blocked_ips));
+		error_log('Spider Allow: ' . $spider_allow);
+		error_log('Spider Log Enabled: ' . ($spider_log_enabled ? 'true' : 'false'));
+		error_log('Blacklist Enable: ' . ($blacklist_enable ? 'true' : 'false'));
+		error_log('Blacklist File Path: ' . $blacklist_file_path);
+		error_log('Redirect Option: ' . $redirect_option);
             }
+			
+			// Do not execute the check for the 'page_not_found' page
+			if ($redirect_option === 'page_not_found') {
+				if ($current_page_base == 'page_not_found') {
+					return;
+				}
+			}
+
+			$abuseipdb_enabled = (int)ABUSEIPDB_ENABLED;
 
             $ip = $_SERVER['REMOTE_ADDR'];
 
@@ -124,25 +140,28 @@ class abuseipdb_observer extends base {
 
 			if ($ip_blocked) {
 				if ($debug_mode == true) {
-					error_log('IP ' . $ip . ' blocked from cache');
+					error_log('IP ' . $ip . ' blocked by blacklist');
 			}
 
-                $log_file_name = 'abuseipdb_blocked_' . date('Y_m') . '.log';
                 $log_file_path = ABUSEIPDB_LOG_FILE_PATH . $log_file_name;
                 $log_message_cache = date('Y-m-d H:i:s') . ' IP address ' . $ip . ' blocked by blacklist: ' . $abuseScore . PHP_EOL;
 
                 if ($enable_logging) {
                     file_put_contents($log_file_path, $log_message_cache, FILE_APPEND);
                 }
-                header('HTTP/1.0 403 Forbidden');                
-                zen_exit();
+                if ($redirect_option === 'page_not_found') {
+					header('Location: /index.php?main_page=page_not_found');
+					exit();
+				} elseif ($redirect_option === 'forbidden') {
+					header('HTTP/1.0 403 Forbidden');
+					exit();
+					}
             }
 
 			// Skip API call for known spiders if enabled
-				if (checkSpiderFlag() && $spider_allow == 'true') {
+				if ((isset($spider_flag) && $spider_flag === true && $spider_allow == 'true')) {
 
 					// Check if logging is enabled for allowed spiders
-						$log_file_name_spiders = 'abuseipdb_spiders_' . date('Y_m_d') . '.log'; // Changed to daily log file
 						$log_file_path_spiders = $log_file_path . $log_file_name_spiders;
 						$log_message = date('Y-m-d H:i:s') . ' IP address ' . $ip . ' is identified as a Spider. AbuseIPDB API check was bypassed.' . PHP_EOL;
 
@@ -166,16 +185,20 @@ class abuseipdb_observer extends base {
                 }
 
                 if ($abuseScore >= $threshold || ($test_mode && in_array($ip, $test_ips))) {
-                    $log_file_name = 'abuseipdb_blocked_cache_' . date('Y_m') . '.log';
-                    $log_file_path = ABUSEIPDB_LOG_FILE_PATH . $log_file_name;
+                    $log_file_path = ABUSEIPDB_LOG_FILE_PATH . $log_file_name_cache;
                     $log_message_cache = date('Y-m-d H:i:s') . ' IP address ' . $ip . ' blocked from database cache with score: ' . $abuseScore . PHP_EOL;
 
                     if ($enable_logging) {
                         file_put_contents($log_file_path, $log_message_cache, FILE_APPEND);
                     }
 
-         header('HTTP/1.0 403 Forbidden');
-        zen_exit();
+                     if ($redirect_option === 'page_not_found') {
+						header('Location: /index.php?main_page=page_not_found');
+						exit();
+					} elseif ($redirect_option === 'forbidden') {
+						header('HTTP/1.0 403 Forbidden');
+						exit();
+					}
                 }
             } else {
                 // Make the API call
@@ -189,8 +212,6 @@ class abuseipdb_observer extends base {
                     $query = "INSERT INTO " . TABLE_ABUSEIPDB_CACHE . " (ip, score, timestamp) VALUES ('" . zen_db_input($ip) . "', " . (int)$abuseScore . ", NOW()) ON DUPLICATE KEY UPDATE score = VALUES(score), timestamp = VALUES(timestamp)";
                     $db->Execute($query);
                 }
-
-                    $log_file_name_api = 'abuseipdb_api_call_' . date('Y_m_d') . '.log'; // Changed to daily log file
                     $log_file_path_api = $log_file_path . $log_file_name_api;
                     $log_message = date('Y-m-d H:i:s') . ' IP address ' . $ip . ' API call. Score: ' . $abuseScore . PHP_EOL;
 
@@ -203,7 +224,6 @@ class abuseipdb_observer extends base {
                 }
 
 				if ($abuseScore >= $threshold) {
-					$log_file_name = 'abuseipdb_blocked_' . date('Y_m') . '.log';
 					$log_file_path = ABUSEIPDB_LOG_FILE_PATH . $log_file_name;
 					$log_message = date('Y-m-d H:i:s') . ' IP address ' . $ip . ' blocked by AbuseIPDB from API call with score: ' . $abuseScore . PHP_EOL;
 
@@ -211,8 +231,13 @@ class abuseipdb_observer extends base {
                         file_put_contents($log_file_path, $log_message, FILE_APPEND);
                     }
 
-            header('HTTP/1.0 403 Forbidden');
-            zen_exit();
+                    if ($redirect_option === 'page_not_found') {
+						header('Location: /index.php?main_page=page_not_found');
+						exit();
+					} elseif ($redirect_option === 'forbidden') {
+						header('HTTP/1.0 403 Forbidden');
+						exit();
+					}
                 }
             }
         }
