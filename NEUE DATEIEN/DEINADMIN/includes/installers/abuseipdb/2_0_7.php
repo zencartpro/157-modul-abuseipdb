@@ -22,7 +22,7 @@ $db->Execute("INSERT IGNORE INTO ".TABLE_CONFIGURATION." (configuration_title, c
 ('Enable Test Mode?', 'ABUSEIPDB_TEST_MODE', 'false', 'Enable or disable test mode for the plugin.', @gid, now(), 5, NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
 ('Test IP Address', 'ABUSEIPDB_TEST_IP', '', 'Enter the IP addresses separated by commas without any spaces to use for testing the plugin.', @gid, now(), 6, NULL, NULL),
 ('Enable Logging?', 'ABUSEIPDB_ENABLE_LOGGING', 'false', 'Enable or disable logging of blocked IP addresses.', @gid, now(), 7, NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),'),
-('Log File Format', 'ABUSEIPDB_LOG_FILE_FORMAT', 'abuseipdb_blocked_Y_m.log', 'The log file format for blocked IP addresses.', @gid, now(), 8, NULL, NULL),
+('Log File Format', 'ABUSEIPDB_LOG_FILE_FORMAT', 'abuseipdb_blocked_Y_m.log', 'The log file format for blocked IP addresses.', @gid, now(), 40, NULL, NULL),
 ('Log File Path', 'ABUSEIPDB_LOG_FILE_PATH', '/var/xxx/xxx/logs/', 'The path to the directory where log files are stored.', @gid, now(), 9, NULL, NULL),
 ('IP Address: Whitelist', 'ABUSEIPDB_WHITELISTED_IPS', '', 'Enter the IP addresses separated by commas without any spaces, like this: 192.168.1.1,192.168.2.2,192.168.3.3', @gid, now(), 10, NULL, 'zen_cfg_textarea('),
 ('IP Address: Blacklist', 'ABUSEIPDB_BLOCKED_IPS', '', 'Enter the IP addresses separated by commas without any spaces, like this: 192.168.1.1,192.168.2.2,192.168.3.3', @gid, now(), 11, NULL, 'zen_cfg_textarea('),
