@@ -5,7 +5,7 @@
  * Copyright 2023 marcopolo
  * see https://github.com/CcMarc/AbuseIPDB
  * license GNU General Public License (GPL)
- * version $Id: 2.0.7.php 2023-05-30 20:21:16Z webchills $
+ * version $Id: 2.0.7.php 2024-04-01 21:34:16Z webchills $
  */
 
 
@@ -46,8 +46,8 @@ $db->Execute("REPLACE INTO ".TABLE_CONFIGURATION_LANGUAGE." (configuration_title
 ('AbuseIPDB - Whitelist', 'ABUSEIPDB_WHITELISTED_IPS', 'Wenn Sie hier IP-Adressen eintragen, werden die immer erlaubt, völlig unabhängig von ihrem AbuseIPDB Score<br>Geben Sie die IP Adressen kommagetrennt ohne Leerzeichen ein, z.B.: 192.168.1.1,192.168.2.2,192.168.3.3<br>', 43),
 ('AbuseIPDB - Blacklist', 'ABUSEIPDB_BLOCKED_IPS', 'Wenn Sie hier IP-Adressen eintragen, werden die immer geblockt, völlig unabhängig von ihrem AbuseIPDB Score<br>Geben Sie die IP Adressen kommagetrennt ohne Leerzeichen ein, z.B.: 192.168.1.1,192.168.2.2,192.168.3.3<br>', 43),
 ('AbuseIPDB - Logging für API Anfragen aktivieren', 'ABUSEIPDB_ENABLE_LOGGING_API', 'Sollen die API Anfragen in einem Logfile protokolliert werden?<br>', 43),
-('AbuseIPDB - IP Adressen regelmäßig löschen?', 'ABUSEIPDB_CLEANUP_ENABLED', 'Sollen die IP Adressen regelmäßig aus der Datenbanktabelle abuseipdb_maintenance gelöscht werden?<br>', 43),
-('AbuseIPDB - Intervall für Löschung', 'ABUSEIPDB_CLEANUP_PERIOD', 'Geben Sie hier das Ablaufdatum in Tagen ein (Voreinstellung: 30).<br>Nach diesem Zeitraum werden die IP Adressen aus der Tabelle abuseipdb_maintenace entfernt, falls Sie das oben aktiviert haben.<br>', 43),
+('AbuseIPDB - IP Adressen regelmäßig löschen?', 'ABUSEIPDB_CLEANUP_ENABLED', 'Sollen die IP Adressen regelmäßig aus der Datenbanktabelle abuseipdb_cache gelöscht werden?<br>', 43),
+('AbuseIPDB - Intervall für Löschung', 'ABUSEIPDB_CLEANUP_PERIOD', 'Geben Sie hier das Ablaufdatum in Tagen ein (Voreinstellung: 30).<br>Nach diesem Zeitraum werden die IP Adressen aus der Tabelle abuseipdb_cache entfernt, falls Sie das oben aktiviert haben.<br>', 43),
 ('AbuseIPDB - Spider erlauben', 'ABUSEIPDB_SPIDER_ALLOW', 'Sollen bekannte Spider von den AbuseIPDB Prüfungen ausgenommen sein?<br>Empfohlene Einstellung: true<br>Sie erreichen sonst sehr schnell Ihr API Limit bei AbuseIPDB!<br>', 43),
 ('AbuseIPDB - Spider loggen', 'ABUSEIPDB_SPIDER_ALLOW_LOG', 'Sollen bekannte Spider, die keine API Anfrage auslösen, in einem Logfile protokolliert werden?<br>', 43),
 ('AbuseIPDB - Debugging aktivieren', 'ABUSEIPDB_DEBUG', 'Wenn Sie hier das Debugging aktivieren, wird jede Aktion des Moduls in einem Logfile protokolliert.<br>Nur zur Fehlersuche sinnvoll!<br>', 43)");

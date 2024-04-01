@@ -5,7 +5,7 @@
  * Copyright 2023 marcopolo
  * see https://github.com/CcMarc/AbuseIPDB
  * License: GNU General Public License (GPL)
- * version $Id: class.abuseipdb_observer.php 2024-04-01 14:03:16Z webchills $
+ * version $Id: class.abuseipdb_observer.php 2024-04-01 21:21:16Z webchills $
  */
 
 class abuseipdb_observer extends base {
@@ -29,14 +29,15 @@ class abuseipdb_observer extends base {
 		$abuseipdb_enabled = ABUSEIPDB_ENABLED;
 
         if ($cleanup_enabled == 'true' && $abuseipdb_enabled == 'true') {
-            $maintenance_query = "SELECT * FROM " . TABLE_ABUSEIPDB_MAINTENANCE;
+            $maintenance_query = "SELECT last_cleanup, timestamp FROM " . TABLE_ABUSEIPDB_MAINTENANCE;
             $maintenance_info = $db->Execute($maintenance_query);
-
-            if (date('Y-m-d H:i:s') != date('Y-m-d H:i:s', (int)$zcDate->output(($maintenance_info->fields['last_cleanup'])))) {
+            if ($maintenance_info->RecordCount() > 0) {
+            if (date('Y-m-d') != date('Y-m-d', (int)$zcDate->output(($maintenance_info->fields['last_cleanup'])))) {
                 // Cleanup old records
                 $cleanup_query = "DELETE FROM " . TABLE_ABUSEIPDB_CACHE . " WHERE timestamp < DATE_SUB(NOW(), INTERVAL " . (int)$cleanup_period . " DAY)";
                 $db->Execute($cleanup_query);
-
+}
+}
             // Update or insert the maintenance timestamp
             if ($maintenance_info->RecordCount() > 0) {
                 $update_query = "UPDATE " . TABLE_ABUSEIPDB_MAINTENANCE . " SET last_cleanup = NOW(), timestamp = NOW()";
@@ -46,7 +47,8 @@ class abuseipdb_observer extends base {
                 $db->Execute($insert_query);
             }
         }
-    }
+    
+  
 }
 
     protected function checkAbusiveIP() {
@@ -177,7 +179,7 @@ class abuseipdb_observer extends base {
             $ip_info = $db->Execute($ip_query);
 
             // If the IP is in the database and the cache has not expired
-            if (!$ip_info->EOF && (time() - (int)$zcDate->output(($ip_info->fields['timestamp'])) < $cache_time)) {
+            if (!$ip_info->EOF && (time() - strtotime($ip_info->fields['timestamp'])) < $cache_time) {
                 $abuseScore = $ip_info->fields['score'];
 
                 if ($debug_mode == true) {
