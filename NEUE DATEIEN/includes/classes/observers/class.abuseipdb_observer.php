@@ -5,7 +5,7 @@
  * Copyright 2023 marcopolo
  * see https://github.com/CcMarc/AbuseIPDB
  * License: GNU General Public License (GPL)
- * version $Id: class.abuseipdb_observer.php 2023-06-24 20:06:16Z webchills $
+ * version $Id: class.abuseipdb_observer.php 2024-04-01 14:03:16Z webchills $
  */
 
 class abuseipdb_observer extends base {
@@ -22,7 +22,7 @@ class abuseipdb_observer extends base {
     }
 
     protected function runCleanup() {
-        global $db;
+        global $db,$zcDate;
 
         $cleanup_enabled = ABUSEIPDB_CLEANUP_ENABLED;
         $cleanup_period = ABUSEIPDB_CLEANUP_PERIOD;
@@ -32,7 +32,7 @@ class abuseipdb_observer extends base {
             $maintenance_query = "SELECT * FROM " . TABLE_ABUSEIPDB_MAINTENANCE;
             $maintenance_info = $db->Execute($maintenance_query);
 
-            if (date('Y-m-d') != date('Y-m-d', strtotime($maintenance_info->fields['last_cleanup']))) {
+            if (date('Y-m-d H:i:s') != date('Y-m-d H:i:s', (int)$zcDate->output(($maintenance_info->fields['last_cleanup'])))) {
                 // Cleanup old records
                 $cleanup_query = "DELETE FROM " . TABLE_ABUSEIPDB_CACHE . " WHERE timestamp < DATE_SUB(NOW(), INTERVAL " . (int)$cleanup_period . " DAY)";
                 $db->Execute($cleanup_query);
@@ -50,7 +50,7 @@ class abuseipdb_observer extends base {
 }
 
     protected function checkAbusiveIP() {
-        global $current_page_base, $_SESSION, $db, $spider_flag;
+        global $current_page_base, $_SESSION, $db, $spider_flag, $zcDate;
 
         if (ABUSEIPDB_ENABLED == 'true') {
             require_once 'includes/functions/abuseipdb_custom.php';
@@ -144,7 +144,7 @@ class abuseipdb_observer extends base {
 			}
 
                 $log_file_path = ABUSEIPDB_LOG_FILE_PATH . $log_file_name;
-                $log_message_cache = date('Y-m-d H:i:s') . ' IP address ' . $ip . ' blocked by blacklist: ' . $abuseScore . PHP_EOL;
+                $log_message_cache = date('Y-m-d H:i:s') . ' IP address ' . $ip . ' blocked by blacklist ' . PHP_EOL;
 
                 if ($enable_logging) {
                     file_put_contents($log_file_path, $log_message_cache, FILE_APPEND);
@@ -177,7 +177,7 @@ class abuseipdb_observer extends base {
             $ip_info = $db->Execute($ip_query);
 
             // If the IP is in the database and the cache has not expired
-            if (!$ip_info->EOF && (time() - strtotime($ip_info->fields['timestamp'])) < $cache_time) {
+            if (!$ip_info->EOF && (time() - (int)$zcDate->output(($ip_info->fields['timestamp'])) < $cache_time)) {
                 $abuseScore = $ip_info->fields['score'];
 
                 if ($debug_mode == true) {
@@ -196,8 +196,8 @@ class abuseipdb_observer extends base {
 						header('Location: /index.php?main_page=page_not_found');
 						exit();
 					} elseif ($redirect_option === 'forbidden') {
-						header('HTTP/1.0 403 Forbidden');
-						exit();
+						 header('HTTP/1.0 403 Forbidden');						             
+                exit();						
 					}
                 }
             } else {
