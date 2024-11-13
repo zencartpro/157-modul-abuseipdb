@@ -2,10 +2,10 @@
 /**
  * AbuseIPDB for Zen Cart German 1.5.7
  * Zen Cart German Version - www.zen-cart-pro.at
- * Copyright 2023 marcopolo
+ * Copyright 2023-2024 marcopolo
  * see https://github.com/CcMarc/AbuseIPDB
  * License: GNU General Public License (GPL)
- * version $Id: class.abuseipdb_observer.php 2024-04-01 21:21:16Z webchills $
+ * version $Id: class.abuseipdb_observer.php 2024-11-13 16:21:16Z webchills $
  */
 
 class abuseipdb_observer extends base {
@@ -52,7 +52,7 @@ class abuseipdb_observer extends base {
 }
 
     protected function checkAbusiveIP() {
-        global $current_page_base, $_SESSION, $db, $spider_flag, $zcDate;
+        global $current_page_base, $_SESSION, $db, $spider_flag;
 
         if (ABUSEIPDB_ENABLED == 'true') {
             require_once 'includes/functions/abuseipdb_custom.php';
