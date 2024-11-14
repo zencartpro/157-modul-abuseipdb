@@ -62,7 +62,7 @@ $(document).ready(function(){
         <div class="content-infos">
             <div class="info"><b>Version:</b> 2.1.3</div>
             <div class="info"><b>Autor:</b> <a href="https://www.webchills.at" target="_blank">webchills</a></div>
-            <div class="info"><b>last Update:</b> 13. November 2024</div>
+            <div class="info"><b>last Update:</b> 14. November 2024</div>
         </div>
         <ul>
             <li class="scroll-to-link active" data-target="content-zweck">
@@ -171,8 +171,10 @@ AbuseIPDB bietet eine einfache Möglichkeit für Systemadministratoren, sowohl b
 </p>
 <p>Gehen Sie nun unter API auf Create Key und erstellen Sie einen API Key für Ihren Shop.
 Nun können Sie das Modul in Ihrem Shop wie unter Installation beschrieben installieren.</p>
-<p>Um Ihr API-Limit in einem kostenlosen AbuseIPDB Account auf bis zu 5000 Anfragen pro Tag zu erhöhen, binden Sie das AbuseIPDB Badge auf einer Unterseite Ihres Shops ein, z.B. im Impressum.<br>Infos dazu auf:<br>
-  <a href="https://www.abuseipdb.com/account/contributor" target="_blank">https://www.abuseipdb.com/account/contributor</a></p>
+<p>Um Ihr API-Limit in einem kostenlosen AbuseIPDB Account auf bis zu 5000 Anfragen pro Tag zu erhöhen, tragen Sie Ihre AbuseIPDB User ID später unter Konfiguration > AbuseIPDB Einstellungen ein.<br>
+Sie finden die ID, indem Sie Ihre Kontoübersicht auf AbuseIPDB.com aufrufen und die Zahlen am Ende der Profil-URL kopieren.<br>
+Wenn Ihr Profil beispielsweise https://www.abuseipdb.com/user/XXXXXX lautet, geben Sie hier XXXXXX ein.<br>
+Dadurch wird das Abuse IPDB Contributor Badge dann auf der Startseite der Shopadministration in einem neuen Widget eingebunden.</p>
             
         </div>
         <div class="overflow-hidden content-section" id="content-installation">
@@ -212,7 +214,16 @@ Dann nun alle Dateien/Ordner aus dem Ordner NEUE DATEIEN in der vorgegebenen Str
   <br>
   <br>
 5)<br>
-Nehmen Sie nun unter Konfiguration &gt; AbuseIPDB Einstellungen die für Sie passenden Einstellungen vor. Alle Einstellungsmöglichkeiten sind dort erklärt.</p>
+Nehmen Sie nun unter Konfiguration &gt; AbuseIPDB Einstellungen die für Sie passenden Einstellungen vor. Alle Einstellungsmöglichkeiten sind dort erklärt.<br><br>
+6)<br>
+Um das Contributor Badge einzubinden und so Ihr kostenloses Limit auf 5000 Anfragen zu erhöhen, laden Sie nun noch folgende geänderte Datei aus dem Ordner GEAENDERTE DATEIEN/DEINADMIN in Ihr Adminverzeichnis hoch:<br>
+index_dashboard.php<br>
+und überschreiben die bestehende damit.<br>
+Dadurch wird das Badge auf der Startseite der Administration in einem neuen Widget rechts unten eingebunden (Stellen Sie sicher, dass sie Ihre Abuse IPDB User ID in der Modulkonfiguration eingetragen haben!).<br>
+Sollten Sie diese Datei bereits einmal geändert haben, nehmen Sie die Änderung manuell vor, es wird hier lediglich in Zeile 27 ein neuer Bereich für das Widget hinterlegt:<br>
+<code>$widgets[] = ['column' => 3, 'sort' => 30, 'visible' => true, 'path' => DIR_WS_MODULES . 'dashboard_widgets/AbuseIPDBDashboardWidget.php'];</code><br>
+Sortierreihenfolge und Spalte können Sie natürlich nach Belieben anpassen.
+</p>
         </div>
 
         
@@ -260,7 +271,7 @@ d. Spider-Protokollierung: Wenn die Spider-Protokollierung aktiviert ist, wird f
             <h1>Changelog</h1>
            
   <br>
-  <p>Version 2.1.3 - 2024-11-13</p>
+  <p>Version 2.1.3 - 2024-11-14</p>
 <ul>
 <li>Contributor Dashboard integriert</li>
 <li>Fix für Fatal Error bei IP Adressen regelmäßig löschen = true</li>
