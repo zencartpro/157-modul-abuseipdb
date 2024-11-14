@@ -15,8 +15,8 @@ Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlic
 ## Voraussetzungen:
 * Freigeschalteter AbuseIPDB Account
 * Konfiguration des erforderlichen API Keys im AbuseIPDB Account
-* Zen Cart 1.5.7f deutsche Version
-* PHP mindestens 7.4.x, empfohlen 8.0.x
+* Zen Cart 1.5.7i deutsche Version
+* PHP mindestens 8.0x, empfohlen 8.3.x
 
 ## Features:
 * API-Schlüssel: Das Skript benötigt einen gültigen API-Schlüssel von AbuseIPDB, um den Missbrauchs-Confidence-Score einer IP-Adresse zu prüfen. Stellen Sie sicher, dass ein gültiger API-Schlüssel verfügbar und in der Einstellung "AbuseIPDB API Key" im Zen Cart-Administrationsbereich korrekt konfiguriert ist.
