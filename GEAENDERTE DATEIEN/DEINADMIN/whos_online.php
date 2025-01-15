@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php for AbuseIPDB 2025-01-15 11:39:16Z webchills $
+ * @version $Id: whos_online.php for AbuseIPDB 2025-01-15 16:43:16Z webchills $
  */
 // Default refresh interval (0=off).  NOTE: Using automated refresh may put you in breach of PCI Compliance
 $defaultRefreshInterval = 0;
@@ -74,8 +74,12 @@ $listingURL = zen_href_link(FILENAME_WHOS_ONLINE, zen_get_all_get_params(['q', '
 <!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
+   <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
+   <?php if (file_exists(DIR_FS_CATALOG . 'extras/fontawesome/6.7.0/css/all.min.css')) {?>
     <link rel="stylesheet" href="../extras/fontawesome/6.7.0/css/all.min.css">
+    <?php } else { ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <?php } ?>
     <script>
       function refreshTimer(time) {
         if (time.length >= 2) {
