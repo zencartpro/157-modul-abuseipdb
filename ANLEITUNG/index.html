@@ -222,7 +222,9 @@ und überschreiben die bestehende damit.<br>
 Dadurch wird das Badge auf der Startseite der Administration in einem neuen Widget rechts unten eingebunden (Stellen Sie sicher, dass sie Ihre Abuse IPDB User ID in der Modulkonfiguration eingetragen haben!).<br>
 Sollten Sie diese Datei bereits einmal geändert haben, nehmen Sie die Änderung manuell vor, es wird hier lediglich in Zeile 27 ein neuer Bereich für das Widget hinterlegt:<br>
 <code>$widgets[] = ['column' => 3, 'sort' => 30, 'visible' => true, 'path' => DIR_WS_MODULES . 'dashboard_widgets/AbuseIPDBDashboardWidget.php'];</code><br>
-Sortierreihenfolge und Spalte können Sie natürlich nach Belieben anpassen.
+Sortierreihenfolge und Spalte können Sie natürlich nach Belieben anpassen.<br><br>
+7)<br>
+Um diverse AbuseIPDB Funktionen zum IP-Management in die Whos's Online Adminseite zu integrieren, ersetzen Sie die Datei DEINADMIN/whos_online.php mit der aus dem Ordner GEAENDERTE DATEIEN/DEINADMIN.
 </p>
         </div>
 
@@ -274,6 +276,7 @@ d. Spider-Protokollierung: Wenn die Spider-Protokollierung aktiviert ist, wird f
   <p>Version 2.1.4 - 2025-01-15</p>
 <ul>
 <li>Integration in die Whos's Online Adminseite</li>
+<li>Anleitung aktualisiert</li>
 </ul>
   <p>Version 2.1.3 - 2024-11-14</p>
 <ul>
