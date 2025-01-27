@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php for AbuseIPDB 2025-01-15 16:43:16Z webchills $
+ * @version $Id: whos_online.php for AbuseIPDB 2025-01-27 16:07:16Z webchills $
  */
 // Default refresh interval (0=off).  NOTE: Using automated refresh may put you in breach of PCI Compliance
 $defaultRefreshInterval = 0;
@@ -75,11 +75,6 @@ $listingURL = zen_href_link(FILENAME_WHOS_ONLINE, zen_get_all_get_params(['q', '
 <html <?php echo HTML_PARAMS; ?>>
   <head>
    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
-   <?php if (file_exists(DIR_FS_CATALOG . 'extras/fontawesome/6.7.0/css/all.min.css')) {?>
-    <link rel="stylesheet" href="../extras/fontawesome/6.7.0/css/all.min.css">
-    <?php } else { ?>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <?php } ?>
     <script>
       function refreshTimer(time) {
         if (time.length >= 2) {
@@ -140,7 +135,7 @@ $listingURL = zen_href_link(FILENAME_WHOS_ONLINE, zen_get_all_get_params(['q', '
           <a class="optionClick<?php echo ($_SESSION['wo_exclude_admins']) ? ' chosen' : ''; ?>" href="<?php echo $optURL; ?>na=1"><?php echo TEXT_YES; ?></a>&nbsp;
           <a class="optionClick<?php echo (!$_SESSION['wo_exclude_admins']) ? ' chosen' : ''; ?>" href="<?php echo $optURL; ?>na=0"><?php echo TEXT_NO; ?></a>&nbsp;
 	  <?php if (defined('ABUSEIPDB_ENABLED') && ABUSEIPDB_ENABLED === 'true') : ?>&nbsp;&nbsp;&nbsp;<br>
-	  <?php echo 'Exclude IPs by AbuseIPDB Threshold?'; ?>
+	  <?php echo TEXT_WHOS_ONLINE_FILTER_ABUSEIPDB; ?>	  
 	  <a class="optionClick<?php echo ($_SESSION['wo_exclude_abuseipdb'])  ? ' chosen' : ''; ?>" href="<?php echo $optURL;?>ab=1"><?php echo TEXT_YES; ?></a>&nbsp;
 	  <a class="optionClick<?php echo (!$_SESSION['wo_exclude_abuseipdb']) ? ' chosen' : ''; ?>" href="<?php echo $optURL;?>ab=0"><?php echo TEXT_NO; ?></a>&nbsp;
 	  <?php endif; ?>
