@@ -5,7 +5,7 @@
  * Copyright 2023-2025 marcopolo
  * see https://github.com/CcMarc/AbuseIPDB
  * license GNU General Public License (GPL)
- * version $Id: 2.1.4.php 2025-01-15 12:13:16Z webchills $
+ * version $Id: 2.1.6.php 2025-01-27 15:31:16Z webchills $
  */ 
 
-$db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '2.1.4' WHERE configuration_key = 'ABUSEIPDB_MODUL_VERSION';");
+$db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '2.1.6' WHERE configuration_key = 'ABUSEIPDB_MODUL_VERSION';");
