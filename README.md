@@ -9,14 +9,15 @@ Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlic
 * AbuseIPDB ist ein Projekt, das von Marathon Studios Inc. in den USA verwaltet wird. Ziel ist es, das Internet sicherer zu machen, indem ein zentrales Repository für Webmaster, Systemadministratoren und andere interessierte Parteien bereitgestellt wird, um IP-Adressen zu melden und zu identifizieren, die mit bösartigen Online-Aktivitäten in Verbindung gebracht wurden.
 * Infos zu diesem Projekt auf:
 * https://www.abuseipdb.com
-* Dieses Modul integriert AbuseIPDB in die deutsche Zen Cart Version, um Ihren Onlineshop vor missbräuchlichen IP-Adressen zu schützen. 
+* Dieses Modul integriert AbuseIPDB in die deutsche Zen Cart Version, um Ihren Onlineshop vor bösartigen IP-Adressen zu schützen. 
 * Es prüft die Vertrauenswürdigkeit der IP-Adresse eines Besuchers mithilfe der AbuseIPDB-API und blockiert den Zugriff auf die Website, wenn der Wert einen vordefinierten Schwellenwert überschreitet. Das Modul unterstützt auch die Zwischenspeicherung, um die Anzahl der API-Aufrufe zu reduzieren, einen Testmodus für die Fehlersuche und die Protokollierung zur Überwachung blockierter IPs. Darüber hinaus ermöglicht es das manuelle Whitelisting und Blacklisting von IP-Adressen, um Ihnen eine bessere Kontrolle über den Zugriff auf Ihre Website zu ermöglichen.
 
 ## Voraussetzungen:
 * Freigeschalteter AbuseIPDB Account
 * Konfiguration des erforderlichen API Keys im AbuseIPDB Account
-* Zen Cart 1.5.7i deutsche Version
-* PHP mindestens 8.0x, empfohlen 8.3.x
+* Zen Cart 1.5.7j deutsche Version
+* Plugin Manager Update 1.2.0 für Zen Cart 1.5.7j deutsch
+* PHP 8.3.x
 
 ## Features:
 * API-Schlüssel: Das Skript benötigt einen gültigen API-Schlüssel von AbuseIPDB, um den Missbrauchs-Confidence-Score einer IP-Adresse zu prüfen. Stellen Sie sicher, dass ein gültiger API-Schlüssel verfügbar und in der Einstellung "AbuseIPDB API Key" im Zen Cart-Administrationsbereich korrekt konfiguriert ist.
@@ -36,7 +37,7 @@ Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlic
 
 ## Änderungen gegenüber dem Originalmodul:
 * Deutsche Sprachfiles, deutsche Konfiguration und deutsche Anleitung hinzugefügt
-* Installer auf Standard Modul Installer der deutschen Zen Cart Version umgestellt
+* Anpassung für die deutsche Zen Cart Version 1.5.7j
 * unnötige Dateien entfernt 
 
 ## Installation und Konfiguration
