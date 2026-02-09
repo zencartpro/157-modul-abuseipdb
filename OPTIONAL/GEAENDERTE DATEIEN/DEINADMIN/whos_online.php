@@ -5,7 +5,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: whos_online.php for AbuseIPDB 2026-02-09 14:00:16Z webchills $
+ * @version $Id: whos_online.php for AbuseIPDB 2026-02-09 19:56:16Z webchills $
  */
 // Default refresh interval (0=off).  NOTE: Using automated refresh may put you in breach of PCI Compliance
 $defaultRefreshInterval = 0;
@@ -244,14 +244,8 @@ $listingURL = zen_href_link(FILENAME_WHOS_ONLINE, zen_get_all_get_params(['q', '
                 <td>&nbsp;</td>
                 <td class="dataTableContentWhois text-center align-top"><?php echo date('H:i:s', $item['time_entry']); ?></td>
                 <td class="dataTableContentWhois text-center align-top"><?php echo date('H:i:s', $item['time_last_click']); ?></td>
+		
 		<td class="dataTableContentWhois text-center align-top">
-		<?php
-    		$lastURLlink = '<a href="' . zen_output_string_protected($item['last_page_url']) . '" rel="noopener" target="_blank">' . '<u>' . zen_output_string_protected($item['last_page_url']) . '</u>' . '</a>';
-    		if (preg_match('/^(.*)' . zen_session_name() . '=[a-f,0-9]+[&]*(.*)/i', $item['last_page_url'], $array)) {
-        	$lastURLlink = zen_output_string_protected($array[1] . $array[2]);
-    		}
-    		echo '<div class="last-url-link">' . $lastURLlink . '</div>';
-		?>
 		</td>
 		<!-- BOF - Display IP Address with AbuseIPDB Score and Block Button -->
 		<?php if (defined('ABUSEIPDB_ENABLED') && ABUSEIPDB_ENABLED === 'true') : ?>
@@ -269,7 +263,7 @@ $listingURL = zen_href_link(FILENAME_WHOS_ONLINE, zen_get_all_get_params(['q', '
                   }
                   ?>
                   <td class="dataTableContentWhois align-top" colspan=3>&nbsp;&nbsp;<?php echo TIME_PASSED_LAST_CLICKED . '<br>&nbsp;&nbsp;&nbsp;&nbsp;' . $item['time_since_last_click']; ?> ago</td>
-		  <td class="dataTableContentWhois dataTableButtonCell" colspan="<?php echo (defined('ABUSEIPDB_ENABLED') && ABUSEIPDB_ENABLED === 'true') ? 4 : 5; ?>" valign="top">
+                  <td class="dataTableContentWhois dataTableButtonCell" colspan=5 valign="top">
                       <?php
                       echo TEXT_SESSION_ID . zen_output_string_protected($item['session_id']) . '<br>' .
                       TEXT_HOST . zen_output_string_protected($item['host_address']) . '<br>' .
@@ -283,7 +277,8 @@ $listingURL = zen_href_link(FILENAME_WHOS_ONLINE, zen_get_all_get_params(['q', '
                       ?>
                   </td>
 		<?php if (defined('ABUSEIPDB_ENABLED') && ABUSEIPDB_ENABLED === 'true') : ?>
-  		<td class="dataTableContentWhois align-top" colspan=3>&nbsp;&nbsp;</td>
+  		
+			<td class="dataTableContentWhois align-top" colspan=3>&nbsp;&nbsp;</td>
 		<?php endif; ?>
                   </tr>
                   <?php
