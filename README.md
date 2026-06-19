@@ -15,9 +15,8 @@ Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlic
 ## Voraussetzungen:
 * Freigeschalteter AbuseIPDB Account
 * Konfiguration des erforderlichen API Keys im AbuseIPDB Account
-* Zen Cart 1.5.7j deutsche Version
-* Plugin Manager Update 1.2.0 für Zen Cart 1.5.7j deutsch
-* PHP 8.3.x
+* Zen Cart 1.5.7k deutsche Version
+* PHP 8.4.x
 
 ## Features:
 * API-Schlüssel: Das Skript benötigt einen gültigen API-Schlüssel von AbuseIPDB, um den Missbrauchs-Confidence-Score einer IP-Adresse zu prüfen. Stellen Sie sicher, dass ein gültiger API-Schlüssel verfügbar und in der Einstellung "AbuseIPDB API Key" im Zen Cart-Administrationsbereich korrekt konfiguriert ist.
@@ -29,6 +28,7 @@ Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlic
 * Protokollierung: Wenn die Protokollierung aktiviert ist, werden Protokolldateien erstellt, wenn eine IP-Adresse gesperrt wird, entweder manuell oder auf der Grundlage des AbuseIPDB-Scores. Wenn die API-Protokollierung aktiviert ist, wird auch für API-Aufrufe eine separate Protokolldatei erstellt. Der Speicherort dieser Protokolldateien kann über die Einstellung "Logfile Pfad" im Zen Cart-Administrationsbereich konfiguriert werden.
 * Überspringen der IP-Prüfung für bekannte Spider: Wenn die Einstellung "Spider erlauben" aktiviert ist, werden bekannte Spider bei der IP-Prüfung und Protokollierung übersprungen, da sie nicht der AbuseIPDB-Bewertung unterliegen. Dies kann nützlich sein, um unnötige API-Aufrufe und Protokolleinträge für Spider-Sitzungen zu vermeiden.
 * Spider-Erkennung: Das Skript verwendet eine von Zen Cart bereitgestellte Datei namens spiders.txt, um bekannte Spider, einschließlich Suchmaschinen-Bots und Web-Crawler, zu identifizieren. Es liest den User Agent aus der HTTP-Anfrage und vergleicht ihn mit den Einträgen in der Datei spiders.txt. Wenn eine Übereinstimmung gefunden wird, die anzeigt, dass der Benutzer-Agent einem bekannten Spider entspricht, wird das Spider-Flag auf true gesetzt. Dieses Flag bestimmt das Verhalten des Skripts und ermöglicht es ihm, bestimmte Prüfungen zu umgehen oder bestimmte, auf Spider-Sitzungen zugeschnittene Aktionen auszuführen. 
+* Länder Blocking: Es können Zugriffe aus ganzen Ländern durch einfache Eingabe einer ISO Code Liste gesperrt werden. Das ist insbesondere dann sinnvoll, wenn der Shop bei einem Provider läuft, der das Apache Modul GeoIP nicht zur Verfügung stellt (z.B. Ionos, HostEurope)
 
 ## Credits:
 * Dieses Modul ist eine Übersetzung und Anpassung des amerikanischen AbuseIPDB Moduls von marcopolo für die deutsche Zen Cart Version
@@ -37,7 +37,7 @@ Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlic
 
 ## Änderungen gegenüber dem Originalmodul:
 * Deutsche Sprachfiles, deutsche Konfiguration und deutsche Anleitung hinzugefügt
-* Anpassung für die deutsche Zen Cart Version 1.5.7j
+* Anpassung für die deutsche Zen Cart Version 1.5.7k
 * unnötige Dateien entfernt 
 
 ## Installation und Konfiguration
