@@ -21,7 +21,7 @@ return [
     'AIPDB_CON_TAB_BLOCKS' => 'Sperren',
     'AIPDB_CON_TAB_LOOKUP' => 'IP-Suche',
     
-    'AIPDB_CON_TAB_LOGS' => 'Protokolle',
+    'AIPDB_CON_TAB_LOGS' => 'Logs',
     'AIPDB_CON_NOT_INSTALLED' => 'Die Blocktabelle ist noch nicht installiert. Führen Sie das Plugin-Upgrade im Plugin-Manager durch.',
     'AIPDB_CON_MSG_WRITE_OFF' => 'Das Schreiben in die .htaccess-Datei ist deaktiviert, daher wurde die Datei nicht geändert. Die in der Datei noch aufgeführten Blöcke wurden beibehalten.',
     'AIPDB_CON_MSG_BUSY' => 'Eine andere Anfrage aktualisiert gerade die .htaccess. Bitte versuche es erneut.',
@@ -74,11 +74,11 @@ return [
     'AIPDB_CON_FILE_OUT_OF_SYNC' => 'Nicht synchronisiert (%s)',
     'AIPDB_CON_FILE_IN_SYNC' => 'Synchronisiert',
     
-    'AIPDB_CON_TILE_ACTIVE' => 'Aktive Blöcke',
+    'AIPDB_CON_TILE_ACTIVE' => 'Aktive Sperren',
     'AIPDB_CON_TILE_EXPIRING' => 'Läuft in 24 Stunden ab',
     
-    'AIPDB_CON_TILE_EXPIRY' => 'Blockablauf',
-    'AIPDB_CON_TILE_EXPIRY_TIP' => 'Neue Blöcke werden nach dieser Anzahl von Tagen automatisch entfernt. Wird in den AbuseIPDB-Einstellungen festgelegt. Bei 0 bleiben Blöcke so lange bestehen, bis Sie sie entsperren.',
+    'AIPDB_CON_TILE_EXPIRY' => 'Ablauf der Sperren',
+    'AIPDB_CON_TILE_EXPIRY_TIP' => 'Neue Sperren werden nach dieser Anzahl von Tagen automatisch entfernt. Wird in den AbuseIPDB-Einstellungen festgelegt. Bei 0 bleiben Sperren so lange bestehen, bis Sie sie entsperren.',
     
     'AIPDB_CON_DAYS' => '%s Tage',
     'AIPDB_CON_NEVER' => 'Nie',
@@ -95,7 +95,7 @@ return [
     'AIPDB_CON_NOTE_PLACEHOLDER' => 'optional',
     'AIPDB_CON_LABEL_EXPIRES' => 'Ablaufdatum',
     'AIPDB_CON_EXPIRY_DEFAULT' => 'Standard (%s)',
-    'AIPDB_CON_BUTTON_BLOCK' => 'IP blockieren',
+    'AIPDB_CON_BUTTON_BLOCK' => 'IP sperren',
     
     'AIPDB_CON_BUTTON_REWRITE' => 'Abschnitt neu schreiben',
     'AIPDB_CON_REWRITE_TIP' => 'Den .htaccess-Abschnitt jetzt anhand der Sperrliste neu erstellen.',
@@ -108,7 +108,7 @@ return [
     'AIPDB_CON_LABEL_SOURCE' => 'Quelle',
     'AIPDB_CON_ALL' => 'Alle',
     'AIPDB_CON_BUTTON_FILTER' => 'Filtern',
-    'AIPDB_CON_NO_BLOCKS' => 'Keine Blöcke zum Anzeigen.',
+    'AIPDB_CON_NO_BLOCKS' => 'Keine Sperren zum Anzeigen.',
     
     'AIPDB_CON_SELECT_ALL' => 'Alle auswählen',
     'AIPDB_CON_SELECT_IP' => '%s auswählen',
@@ -130,7 +130,7 @@ return [
     'AIPDB_CON_OP_WHITELIST' => 'Entsperren und zur Whitelist hinzufügen',
     
     'AIPDB_CON_NEW_EXPIRY' => 'Neues Ablaufdatum',
-    'AIPDB_CON_NEW_EXPIRY_TIP' => 'Lassen Sie das Feld leer, um die ausgewählten Blöcke so lange beizubehalten, bis Sie sie entsperren.',
+    'AIPDB_CON_NEW_EXPIRY_TIP' => 'Lassen Sie das Feld leer, um die ausgewählten Sperren so lange beizubehalten, bis Sie sie entsperren.',
     'AIPDB_CON_BUTTON_APPLY' => 'Übernehmen',
     
     'AIPDB_CON_PAGE_OF' => 'Seite %1$s von %2$s',
